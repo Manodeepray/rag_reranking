@@ -8,3 +8,6 @@ def create_vectorstore(faiss_processed_docs):
     embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     faiss_store = FAISS.from_documents(faiss_processed_docs, embedding_model)
     return  faiss_store
+
+
+
