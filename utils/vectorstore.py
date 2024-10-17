@@ -17,3 +17,10 @@ def load_vectorstore(embeddings):
     return faiss_store
 
 
+def load_larger_vectorstore(embeddings):
+    faiss_store = FAISS.load_local(
+    "faiss_larger_index", embeddings, allow_dangerous_deserialization=True
+    )
+    return faiss_store
+
+

@@ -47,7 +47,7 @@ class CrossEncoderReranker:
         # Return top-k reranked passages
         return [passage for passage, score in reranked_passages[:top_k]]
 
-def smaller_model_reranking():
+def smaller_model_reranking__small():
     top_k_retrieved , query = get_top_k_passages()
     reranker = CrossEncoderReranker(model_name="cross-encoder/ms-marco-MiniLM-L-12-v2")
 
@@ -60,7 +60,7 @@ def smaller_model_reranking():
         print(f"Rank {idx + 1}: {passage.page_content}")
     return None
 
-def larger_model_reranking():
+def smaller_model_reranking_large():
     top_k_retrieved , query = get_top_k_passages()
     #reranker = CrossEncoderReranker(model_name="nvidia/nv-rerankqa-mistral-4b-v3")
         # Rerank the retrieved passages
@@ -82,4 +82,4 @@ def larger_model_reranking():
         print(f"Rank {idx + 1}: {passage.page_content}")
     return None
 
-larger_model_reranking()
+smaller_model_reranking_large()
