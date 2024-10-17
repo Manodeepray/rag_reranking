@@ -12,7 +12,7 @@ def get_top_k_passages():
 
     query = queries['text'][20]
     answer = corpus['text'][20]
-    top_k_retrieved = loaded_retriever.similarity_search(query, k=5)
+    top_k_retrieved = loaded_retriever.similarity_search(query, k=10)
     answers = {}
     answers['query'] = query
     answers['ground truth'] = answer
@@ -25,7 +25,7 @@ class CrossEncoderReranker:
         self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    def rerank(self, query: str, passages: list[Document], top_k: int = 5):
+    def rerank(self, query: str, passages: list[Document], top_k: int = 10):
         # Create a list to hold passages with their relevance scores
         reranked_passages = []
         
@@ -52,7 +52,7 @@ def smaller_model_reranking__small():
     reranker = CrossEncoderReranker(model_name="cross-encoder/ms-marco-MiniLM-L-12-v2")
 
     # Rerank the retrieved passages
-    reranked_passages = reranker.rerank(query, top_k_retrieved, top_k=5)
+    reranked_passages = reranker.rerank(query, top_k_retrieved, top_k=10)
 
     print("\nquery",query,"\n")
     # Print reranked results

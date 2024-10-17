@@ -4,3 +4,5 @@ json/
 ./__pycache__/
 ./utils/__pycache__/
 ./processing/__pycache__/
+./utils/artifacts/
+./artifacts/
