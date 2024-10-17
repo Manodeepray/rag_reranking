@@ -4,12 +4,11 @@ from langchain.schema import Document
 
 def process_documents(corpus):
     documents = []
-    for i in tqdm(range(len(corpus['corpus']))):
-      corpus_doc = corpus['corpus'][i]
+    for i in tqdm(range(len(corpus['_id']))):
       faiss_doc = {}
-      faiss_doc['id'] = corpus_doc['_id']
-      faiss_doc['page_content'] = corpus_doc['text']
-      faiss_doc['metadata'] = corpus_doc['title']
+      faiss_doc['id'] = corpus['_id'][i]
+      faiss_doc['page_content'] = corpus['text'][i]
+      faiss_doc['metadata'] = corpus['title'][i]
       documents.append(faiss_doc)
     
     return documents
